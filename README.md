@@ -42,7 +42,7 @@ Please note that this project is intended for educational and learning purposes 
     ```
 2. Navigate to the project directory:
     ```bash
-   cd login-system-vue3
+   cd vue-front
    ``` 
 3. Install the dependencies:
     ```bash
