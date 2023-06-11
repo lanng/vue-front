@@ -18,6 +18,7 @@ const form = ref({
         <form @submit.prevent="authStore.loginHandler(form)">
           <v-text-field
               v-model="form.email"
+              :rules="[required]"
               type="email"
               label="E-mail"
               required
@@ -26,16 +27,34 @@ const form = ref({
           <v-text-field
               type="password"
               v-model="form.password"
+              :rules="[required]"
               label="Senha"
               required
           ></v-text-field>
 
-          <v-row class="mt-3" align="center" justify="center">
-            <v-btn-toggle rounded>
-              <v-btn type="submit">Entrar</v-btn>
-              <v-btn>Limpar</v-btn>
-            </v-btn-toggle>
+          <v-row class="ma-auto">
+            <v-btn
+                :loading="loading"
+                block
+                color="success"
+                size="large"
+                type="submit"
+                variant="elevated"
+            >
+              Entrar
+            </v-btn>
           </v-row>
+
+          <div class="flex-row text-center mt-3">
+            <v-banner-text class="ma-1">
+              <router-link to="/forgot-password" class="text-decoration-none text-black">
+                Esqueceu a senha?
+              </router-link>
+            </v-banner-text>
+            <v-banner-text class="ma-1">
+              Não tem cadastro ainda? <router-link to="/register" class="text-decoration-none text-blue-accent-4">Crie uma conta</router-link>
+            </v-banner-text>
+          </div>
 
         </form>
       </v-card>
@@ -43,3 +62,23 @@ const form = ref({
   </v-app>
 
 </template>
+<script>
+export default {
+  data: () => ({
+    loading: false,
+  }),
+
+  methods: {
+    onSubmit() {
+      if (!this.form) return
+
+      this.loading = true
+
+      setTimeout(() => (this.loading = false), 2000)
+    },
+    required(v) {
+      return !!v || 'Campo Obrigatório!'
+    },
+  },
+}
+</script>

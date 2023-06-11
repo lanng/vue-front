@@ -38,7 +38,7 @@ const authStore = useAuthStore()
         </template>
         <v-list>
           <v-list-item>
-            <v-list-item-title @click="authStore.logoutHandler()">Logout</v-list-item-title>
+            <v-list-item-title @click="authStore.logoutHandler()">Sair</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
