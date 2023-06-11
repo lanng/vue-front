@@ -52,10 +52,9 @@ const form = ref({
               </router-link>
             </v-banner-text>
             <v-banner-text class="ma-1">
-              Não tem cadastro ainda? <router-link to="/register" class="text-decoration-none text-blue-accent-4">Crie uma conta</router-link>
+              Não tem cadastro ainda?<router-link to="/register" class="text-decoration-none text-blue-accent-4">Crie uma conta</router-link>
             </v-banner-text>
           </div>
-
         </form>
       </v-card>
     </v-container>

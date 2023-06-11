@@ -61,6 +61,9 @@ const form = ref({
               Criar nova conta
             </v-btn>
           </v-row>
+          <div class="text-center mt-4">
+              Já possui cadastro? <router-link to="/login" class="text-decoration-none text-blue-accent-4">Realize o login aqui</router-link>
+          </div>
         </form>
       </v-card>
     </v-container>
