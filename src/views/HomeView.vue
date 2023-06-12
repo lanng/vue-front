@@ -18,6 +18,7 @@ onMounted(async () => {
       </div>
       <div v-else>
         <p>Realize o login para continuar!</p>
+        <span class="text-red text-sm-body-1">{{ authStore.errors.message }}</span>
       </div>
     </v-container>
   </v-app>

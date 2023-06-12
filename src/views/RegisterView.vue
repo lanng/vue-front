@@ -26,6 +26,10 @@ const form = ref({
               required
           ></v-text-field>
 
+          <div v-if="authStore.errors.name" class="d-flex">
+            <span class="text-sm-body-2 text-red ma-auto mb-2">{{ authStore.errors.name[0] }}</span>
+          </div>
+
           <v-text-field
               v-model="form.email"
               :rules="[required]"
@@ -34,6 +38,10 @@ const form = ref({
               required
           ></v-text-field>
 
+          <div v-if="authStore.errors.email" class="d-flex">
+            <span class="text-sm-body-2 text-red ma-auto mb-2">{{ authStore.errors.email[0] }}</span>
+          </div>
+
           <v-text-field
               type="password"
               v-model="form.password"
@@ -41,6 +49,9 @@ const form = ref({
               label="Senha"
               required
           ></v-text-field>
+          <div v-if="authStore.errors.password" class="d-flex">
+            <span class="text-sm-body-2 text-red ma-auto mb-2">{{ authStore.errors.password[0] }}</span>
+          </div>
           <v-text-field
               type="password"
               v-model="form.password_confirmation"
@@ -48,6 +59,9 @@ const form = ref({
               label="Confirme a senha"
               required
           ></v-text-field>
+          <div v-if="authStore.errors.password_confirmation" class="d-flex">
+            <span class="text-sm-body-2 text-red ma-auto mb-2">{{ authStore.errors.password_confirmation[0] }}</span>
+          </div>
 
           <v-row class="ma-auto">
             <v-btn
@@ -62,7 +76,8 @@ const form = ref({
             </v-btn>
           </v-row>
           <div class="text-center mt-4">
-              Já possui cadastro? <router-link to="/login" class="text-decoration-none text-blue-accent-4">Realize o login aqui</router-link>
+            Já possui cadastro?
+            <router-link to="/login" class="text-decoration-none text-blue-accent-4">Realize o login aqui</router-link>
           </div>
         </form>
       </v-card>

@@ -20,6 +20,9 @@ const email = ref();
               label="E-mail"
               required
           ></v-text-field>
+          <div v-if="authStore.errors.email" class="d-flex">
+            <span class="text-sm-body-2 text-red ma-auto mb-2">{{ authStore.errors.email[0] }}</span>
+          </div>
 
           <v-row class="ma-auto">
             <v-btn
