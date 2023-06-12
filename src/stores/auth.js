@@ -38,6 +38,11 @@ export const useAuthStore = defineStore("auth", {
         async logoutHandler() {
             await api.post('/logout');
             this.authUser = null;
+        },
+        async forgotPasswordHandler(email){
+            await api.post('/forgot-password', {
+                email: email,
+            })
         }
 
     },
