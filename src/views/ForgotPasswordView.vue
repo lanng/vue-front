@@ -38,6 +38,24 @@ const email = ref();
           </v-row>
         </form>
       </v-card>
+      <div v-if="authStore.status" class="text-center ma-2">
+        <v-snackbar
+            v-model="snackbar"
+            :timeout="timeout"
+        >
+          {{ authStore.status }}
+
+          <template v-slot:actions>
+            <v-btn
+                color="green"
+                variant="text"
+                @click="snackbar = false"
+            >
+              Fechar
+            </v-btn>
+          </template>
+        </v-snackbar>
+      </div>
     </v-container>
   </v-app>
 
@@ -46,6 +64,8 @@ const email = ref();
 export default {
   data: () => ({
     loading: false,
+    snackbar: true,
+    timeout: 2000,
   }),
 
   methods: {

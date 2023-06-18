@@ -5,10 +5,12 @@ export const useAuthStore = defineStore("auth", {
     state: () => ({
         authUser: null,
         authErrors: [],
+        authStatus: null,
     }),
     getters: {
         user: (state) => state.authUser,
         errors: (state) => state.authErrors,
+        status: (state) => state.authStatus,
     },
     actions: {
         async getToken() {
@@ -26,7 +28,7 @@ export const useAuthStore = defineStore("auth", {
 
         },
         async loginHandler(data) {
-            this.authErrors.clear()
+            this.authErrors = [];
             await this.getToken();
             try {
                 await api.post('/login', {
@@ -67,16 +69,27 @@ export const useAuthStore = defineStore("auth", {
         async forgotPasswordHandler(email) {
             this.authErrors = [];
             try {
-                await api.post('/forgot-password', {
+                const response = await api.post('/forgot-password', {
                     email: email,
-                })
+                });
+                this.authStatus = response.data.status;
             } catch (error) {
                 if (error.response.status === 422) {
-                    this.authErrors = error.response.data.errors
+                    this.authErrors = error.response.data.errors;
+                }
+            }
+        },
+        async resetPasswordHandler(resetData){
+            this.authErrors = [];
+            await this.getToken();
+            try {
+                await api.post('/reset-password', resetData);
+                this.router.push('/login');
+            }catch (error){
+                if (error.response.status === 422){
+                    this.authErrors = error.response.data.errors;
                 }
             }
         }
-
     },
-
 })
